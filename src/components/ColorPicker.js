@@ -1,17 +1,22 @@
 import React from "react";
+
 import { SketchPicker } from "react-color";
 
-export default function ColorPicker() {
-  const [state, setState] = React.useState({
-    background: "#fff",
-  });
-  handleChangeComplete = (color) => {
-    this.setState({ background: color.hex });
+const ColorSelect = (props) => {
+  const { onChange, palette } = props;
+
+  const handleChange = (color) => {
+    const rgba = `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a})`;
+    console.log(props.name, rgba);
+
+    onChange(props.name, rgba);
   };
+
   return (
-    <SketchPicker
-      color={this.state.background}
-      onChangeComplete={this.handleChangeComplete}
-    />
+    <div>
+      <SketchPicker color={palette} onChangeComplete={handleChange} />
+    </div>
   );
-}
+};
+
+export default ColorSelect;

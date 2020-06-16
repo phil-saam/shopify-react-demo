@@ -26,8 +26,6 @@ const styles = (theme) => ({
   navigation: {},
   toggleDrawer: {},
   appTitle: {},
-
-  appBarSpacer: theme.mixins.toolbar,
 });
 
 function NavBar(props) {

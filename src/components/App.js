@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "./theme";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+// import themeRaw from "./theme";
+import { green, red } from "@material-ui/core/colors";
 import ShopProvider from "../context/shopContext";
 import HomePage from "../pages/HomePage";
 import ProductPage from "./../pages/ProductPage";
@@ -10,25 +11,35 @@ import NavBar from "./NavBar/NavBar";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Cart from "./Cart";
 import Colorbar from "./Colorbar";
-import Snackbar from "@material-ui/core/Snackbar";
-import SnackbarContent from "@material-ui/core/SnackbarContent";
 
 const styles = (theme) => ({
-  appBarSpacer: theme.mixins.toolbar,
+  appBarSpacer: {
+    height: "50px",
+  },
 });
 
 function App(props) {
-  const { classes } = props;
-
-  const [state, setState] = React.useState({
-    primaryColor: "#004d40",
-    secondaryColor: "#f57f17",
+  const [palette, setPalette] = useState({
+    primary: {
+      light: "#546e7a",
+      main: "#102027",
+      dark: "#000a12",
+    },
+    secondary: {
+      light: "#ff8a50",
+      main: "#ff5722",
+      dark: "#870000",
+    },
   });
 
-  theme.palette.primary.main = state.primaryColor;
-  theme.palette.secondary.main = state.secondaryColor;
+  const handleChangeTheme = (theme) => {
+    setPalette(theme);
+    console.log(theme, "test");
+  };
 
-
+  let theme = createMuiTheme({ palette });
+  console.log(theme.palette.primary);
+  const { classes } = props;
   return (
     <ThemeProvider theme={theme}>
       <ShopProvider>
@@ -45,10 +56,7 @@ function App(props) {
             </Route>
           </Switch>
         </Router>
-        <Colorbar
-          primary={state.primaryColor}
-          secondary={state.secondaryColor}
-        />
+        <Colorbar theme={theme} onChange={handleChangeTheme} />
       </ShopProvider>
     </ThemeProvider>
   );

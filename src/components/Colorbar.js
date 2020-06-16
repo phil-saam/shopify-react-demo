@@ -1,22 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 //MUI
 import SnackbarContent from "@material-ui/core/SnackbarContent";
 import Snackbar from "@material-ui/core/Snackbar";
 import { withStyles } from "@material-ui/core/styles";
-import {
-  Grid,
-  Typography,
-  Hidden,
-  Button,
-  Divider,
-  IconButton,
-  Avatar,
-} from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
+import { Grid, Hidden, Typography } from "@material-ui/core";
+
+import ColorPicker from "./ColorPicker";
 
 const styles = (theme) => ({
-  Snackbar: { marginBottom: "2S0px" },
+  Snackbar: { marginTop: "200px" },
   Content: {
     backgroundColor: "white",
     maxWidth: "300px",
@@ -26,12 +19,22 @@ const styles = (theme) => ({
   Divider: { margin: theme.spacing(3) },
 });
 
-const CoronaVirus = (props) => {
-  const { classes } = props;
+const ColorBar = (props) => {
+  const { classes, theme, onChange } = props;
+
+  const handleChangePalette = (name, changes) => {
+    let newPalette = {
+      [name]: {
+        main: changes,
+      },
+    };
+    onChange(newPalette);
+  };
+
   return (
     <Hidden xsDown>
       <Snackbar
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
         key="1"
         open={true}
         onClose={props.handleClose}
@@ -42,14 +45,23 @@ const CoronaVirus = (props) => {
           message={
             <Grid container spacing={1}>
               <Grid item>
-                Current Colors:
+                <Typography>Primary Color:</Typography>
                 <Grid item>
-                  <Avatar style={{ backgroundColor: props.primary }}>P</Avatar>
+                  <ColorPicker
+                    name="primary"
+                    onChange={handleChangePalette}
+                    palette={theme.palette.primary.main}
+                  />
                 </Grid>
+              </Grid>
+              <Grid item>
+                <Typography>Secondary Color:</Typography>
                 <Grid item>
-                  <Avatar style={{ backgroundColor: props.secondary }}>
-                    S
-                  </Avatar>
+                  <ColorPicker
+                    name="Secondary"
+                    onChange={handleChangePalette}
+                    palette={theme.palette.primary.main}
+                  />
                 </Grid>
               </Grid>
             </Grid>
@@ -60,4 +72,4 @@ const CoronaVirus = (props) => {
   );
 };
 
-export default withStyles(styles)(CoronaVirus);
+export default withStyles(styles)(ColorBar);

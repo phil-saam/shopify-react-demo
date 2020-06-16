@@ -32,7 +32,6 @@ const useStyles = makeStyles({
 export default function ProductTable(props) {
   const classes = useStyles();
   const { data, deleteItem } = props;
-  console.log(data, "data");
 
   return (
     <div className={classes.root}>

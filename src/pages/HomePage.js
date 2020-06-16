@@ -47,7 +47,6 @@ const HomePage = () => {
                 <Link
                   to={`/product/${product.id}`}
                   style={{ textDecoration: "none" }}
-                  
                 >
                   <Card className={classes.root}>
                     <CardActionArea>
