@@ -2,8 +2,7 @@ import React, { useState } from "react";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-// import themeRaw from "./theme";
-import { green, red } from "@material-ui/core/colors";
+
 import ShopProvider from "../context/shopContext";
 import HomePage from "../pages/HomePage";
 import ProductPage from "./../pages/ProductPage";
@@ -13,9 +12,9 @@ import Cart from "./Cart";
 import Colorbar from "./Colorbar";
 
 const styles = (theme) => ({
-  appBarSpacer: {
-    height: "50px",
-  },
+  // appBarSpacer: {
+  //   height: "50px",
+  // },
 });
 
 function App(props) {
@@ -56,6 +55,7 @@ function App(props) {
             </Route>
           </Switch>
         </Router>
+
         <Colorbar theme={theme} onChange={handleChangeTheme} />
       </ShopProvider>
     </ThemeProvider>

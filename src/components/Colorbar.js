@@ -12,7 +12,7 @@ const styles = (theme) => ({
   Snackbar: { marginTop: "200px" },
   Content: {
     backgroundColor: "white",
-    maxWidth: "300px",
+    // maxWidth: "300px",
     color: theme.palette.primary.dark,
   },
   Header: { fontSize: 22, marginBottom: theme.spacing(3) },
@@ -24,6 +24,7 @@ const ColorBar = (props) => {
 
   const handleChangePalette = (name, changes) => {
     let newPalette = {
+      ...theme.palette,
       [name]: {
         main: changes,
       },
@@ -34,7 +35,7 @@ const ColorBar = (props) => {
   return (
     <Hidden xsDown>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         key="1"
         open={true}
         onClose={props.handleClose}
@@ -43,7 +44,7 @@ const ColorBar = (props) => {
         <SnackbarContent
           className={classes.Content}
           message={
-            <Grid container spacing={1}>
+            <Grid container spacing={3}>
               <Grid item>
                 <Typography>Primary Color:</Typography>
                 <Grid item>
@@ -58,9 +59,9 @@ const ColorBar = (props) => {
                 <Typography>Secondary Color:</Typography>
                 <Grid item>
                   <ColorPicker
-                    name="Secondary"
+                    name="secondary"
                     onChange={handleChangePalette}
-                    palette={theme.palette.primary.main}
+                    palette={theme.palette.secondary.main}
                   />
                 </Grid>
               </Grid>

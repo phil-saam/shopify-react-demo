@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import clsx from "clsx";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 
 const styles = (theme) => ({
   root: {
@@ -12,7 +11,7 @@ const styles = (theme) => ({
     display: "flex",
     alignItems: "center",
     [theme.breakpoints.up("sm")]: {
-      height: "50vh",
+      height: "65vh",
       minHeight: 300,
       maxHeight: 1300,
     },
@@ -43,10 +42,6 @@ const styles = (theme) => ({
     backgroundRepeat: "no-repeat",
     zIndex: -2,
   },
-  arrowDown: {
-    position: "absolute",
-    bottom: theme.spacing(4),
-  },
 });
 
 function ProductHeroLayout(props) {
@@ -58,7 +53,6 @@ function ProductHeroLayout(props) {
         {children}
         <div />
         <div className={clsx(classes.background, backgroundClassName)} />
-        <ArrowDownwardIcon className={classes.arrowDown} />
       </Container>
     </section>
   );

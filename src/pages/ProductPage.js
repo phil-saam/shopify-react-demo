@@ -16,6 +16,9 @@ import {
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
+  appBarSpacer: {
+    height: "50px",
+  },
   media: {
     height: 850,
     backgroundPosition: "center center",
@@ -69,6 +72,7 @@ const ProductPage = () => {
 
   return (
     <Box my={10}>
+      <div className={classes.appBarSpacer} />
       <Container>
         <Grid container spacing="3">
           <Grid item xs={12} sm={8}>
